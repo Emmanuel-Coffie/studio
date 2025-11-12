@@ -31,6 +31,12 @@
       "imageHint": "website design"
     },
     {
+      "id": "project-5",
+      "description": "Screenshot of Strategic Performance Monitoring System.",
+      "imageUrl": "https://images.unsplash.com/photo-1759428201970-fcfc63257b18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJmb3JtYW5jZSUyMGRhc2hib2FyZHxlbnwwfHx8fDE3NjI5NTMxNzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "performance dashboard"
+    },
+    {
       "id": "blog-1",
       "description": "Image for first blog post.",
       "imageUrl": "https://images.unsplash.com/photo-1572760431695-11bc9d7c6205?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxrZXlib2FyZCUyMGNvZmZlZXxlbnwwfHx8fDE3NjI5NTI4MDF8MA&ixlib=rb-4.1.0&q=80&w=1080",

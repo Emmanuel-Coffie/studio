@@ -71,6 +71,16 @@ export const projectsData: Project[] = [
     imagePlaceholder: 'project-2',
   },
   {
+    id: 'proj-5',
+    title: 'Strategic Performance Monitoring System',
+    description:
+      'A system to track and analyze key performance indicators for business strategy, enabling data-driven decision-making.',
+    techStack: ['React', 'Node.js', 'PostgreSQL', 'Chart.js'],
+    liveLink: '#',
+    repoLink: '#',
+    imagePlaceholder: 'project-5',
+  },
+  {
     id: 'proj-3',
     title: 'Data Visualization Dashboard',
     description:

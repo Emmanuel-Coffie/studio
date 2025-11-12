@@ -2,15 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useTheme } from 'next-themes';
 import { Logo } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { Switch } from './ui/switch';
 
 const navItems = [
   { href: '#about', label: 'About' },
@@ -21,10 +23,27 @@ const navItems = [
   { href: '#contact', label: 'Contact' },
 ];
 
+function ThemeToggle() {
+    const { setTheme, theme } = useTheme();
+  
+    return (
+        <div className="flex items-center space-x-2">
+            <Sun className="h-5 w-5" />
+            <Switch
+                id="theme-switch"
+                checked={theme === 'dark'}
+                onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+                aria-label="Toggle theme"
+            />
+            <Moon className="h-5 w-5" />
+        </div>
+    );
+  }
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -67,6 +86,7 @@ export function Header() {
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           <NavLinks />
+          <ThemeToggle />
         </nav>
         <div className="md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -77,7 +97,7 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-3/4">
-              <div className="p-6">
+              <div className="p-6 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-8">
                    <Link href="/" className="flex items-center gap-2" aria-label="Home" onClick={() => setIsMobileMenuOpen(false)}>
                       <Logo className="h-6 w-6 text-primary" />
@@ -95,6 +115,9 @@ export function Header() {
                 <nav className="flex flex-col gap-4">
                   <NavLinks inSheet />
                 </nav>
+                <div className="mt-auto pt-6">
+                    <ThemeToggle />
+                </div>
               </div>
             </SheetContent>
           </Sheet>
