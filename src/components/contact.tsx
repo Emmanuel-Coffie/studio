@@ -11,6 +11,7 @@ import { Button } from './ui/button';
 import { Loader2, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Label } from './ui/label';
+import { CardGlass } from './card-glass';
 
 const initialState = {
   message: null,
@@ -63,25 +64,25 @@ export function Contact() {
         </SectionDescription>
       </SectionHeader>
       <div className="mx-auto max-w-2xl">
-        <Card>
+        <CardGlass>
           <CardContent className="p-6">
             <form ref={formRef} action={formAction} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" placeholder="Your Name" required />
+                <Label htmlFor="name" className="text-foreground/90">Name</Label>
+                <Input id="name" name="name" placeholder="Your Name" required className="bg-white/5 border-white/20 placeholder:text-muted-foreground/60" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="Your Email" required />
+                <Label htmlFor="email" className="text-foreground/90">Email</Label>
+                <Input id="email" name="email" type="email" placeholder="Your Email" required className="bg-white/5 border-white/20 placeholder:text-muted-foreground/60" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea id="message" name="message" placeholder="Your Message" rows={6} required />
+                <Label htmlFor="message" className="text-foreground/90">Message</Label>
+                <Textarea id="message" name="message" placeholder="Your Message" rows={6} required className="bg-white/5 border-white/20 placeholder:text-muted-foreground/60" />
               </div>
               <SubmitButton />
             </form>
           </CardContent>
-        </Card>
+        </CardGlass>
       </div>
     </SectionWrapper>
   );

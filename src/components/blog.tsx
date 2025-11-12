@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from './ui/button';
 import { SectionWrapper, SectionHeader, SectionTitle, SectionDescription } from './section-wrapper';
 import { ArrowRight } from 'lucide-react';
+import { CardGlass } from './card-glass';
 
 export function Blog() {
   return (
@@ -20,33 +21,33 @@ export function Blog() {
         {blogData.map((post) => {
           const postImage = PlaceHolderImages.find(img => img.id === post.imagePlaceholder);
           return (
-            <Card key={post.id} className="flex flex-col overflow-hidden">
+            <CardGlass key={post.id} className="flex flex-col overflow-hidden">
               {postImage && (
                 <div className="relative h-48 w-full">
                   <Image
                     src={postImage.imageUrl}
                     alt={post.title}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-t-xl"
                     data-ai-hint={postImage.imageHint}
                   />
                 </div>
               )}
               <CardHeader>
-                <p className="text-sm text-muted-foreground">{post.date}</p>
-                <CardTitle className="font-headline text-xl">{post.title}</CardTitle>
+                <p className="text-sm text-muted-foreground/80">{post.date}</p>
+                <CardTitle className="font-headline text-xl text-foreground">{post.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
-                <CardDescription>{post.excerpt}</CardDescription>
+                <CardDescription className="text-muted-foreground/80">{post.excerpt}</CardDescription>
               </CardContent>
               <CardFooter>
-                <Button asChild variant="link" className="p-0 h-auto">
+                <Button asChild variant="link" className="p-0 h-auto text-accent">
                   <Link href={post.link}>
                     Read More <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </CardFooter>
-            </Card>
+            </CardGlass>
           );
         })}
       </div>

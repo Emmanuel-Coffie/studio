@@ -25,6 +25,15 @@ const navItems = [
 
 function ThemeToggle() {
     const { setTheme, theme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return null;
+    }
   
     return (
         <div className="flex items-center space-x-2">
@@ -73,8 +82,8 @@ export function Header() {
       className={cn(
         'sticky top-0 z-50 w-full transition-all duration-300',
         isScrolled
-          ? 'border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
-          : 'bg-background/0'
+          ? 'border-b border-white/10 bg-background/80 backdrop-blur-lg'
+          : 'bg-transparent'
       )}
     >
       <div className="container flex h-20 items-center justify-between">
@@ -96,7 +105,7 @@ export function Header() {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full sm:w-3/4">
+            <SheetContent side="right" className="w-full sm:w-3/4 bg-background/80 backdrop-blur-lg border-l-white/10">
               <div className="p-6 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-8">
                    <Link href="/" className="flex items-center gap-2" aria-label="Home" onClick={() => setIsMobileMenuOpen(false)}>

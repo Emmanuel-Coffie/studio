@@ -71,5 +71,17 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+  }
+  
+  .light {
+    --bg-gradient: radial-gradient(circle at top left, hsl(var(--primary) / 0.1), transparent 40%),
+                   radial-gradient(circle at bottom right, hsl(var(--accent) / 0.1), transparent 40%);
+  }
+
+  .dark {
+    --bg-gradient: radial-gradient(circle at top left, hsl(var(--primary) / 0.2), transparent 40%),
+                   radial-gradient(circle at bottom right, hsl(var(--accent) / 0.2), transparent 40%);
   }
 }
