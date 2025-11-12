@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 
 export function Footer() {
   const socialLinks = [
-    { href: '#', icon: <Github className="h-5 w-5" />, label: 'GitHub' },
+    { href: 'https://github.com/Emmanuel-Coffie', icon: <Github className="h-5 w-5" />, label: 'GitHub' },
     { href: '#', icon: <Linkedin className="h-5 w-5" />, label: 'LinkedIn' },
     { href: '#', icon: <Twitter className="h-5 w-5" />, label: 'Twitter' },
   ];
