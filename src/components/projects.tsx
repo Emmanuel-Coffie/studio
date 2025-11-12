@@ -48,13 +48,13 @@ export function Projects() {
                 <Button asChild variant="outline">
                   <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
                     <Github />
-                    GitHub
+                    <span>GitHub</span>
                   </Link>
                 </Button>
                 <Button asChild>
                   <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
                     <ExternalLink />
-                    Live Demo
+                    <span>Live Demo</span>
                   </Link>
                 </Button>
               </CardFooter>
