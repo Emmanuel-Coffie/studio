@@ -32,13 +32,13 @@ export function About() {
               Developer, Innovator, Problem-Solver
             </h3>
             <p className="text-muted-foreground">
-              Hello! I&apos;m Emmanuel Mawutor Coffie, a passionate developer with a knack for creating beautiful and functional digital products. My journey into tech started with a simple curiosity about how websites worked, and it has since evolved into a full-fledged passion for software engineering and user-centric design.
+              Hello! I'm Emmanuel Mawutor Coffie, a passionate developer with a knack for creating beautiful and functional digital products. My journey into tech started with a simple curiosity about how websites worked, and it has since evolved into a full-fledged passion for software engineering and user-centric design.
             </p>
             <p className="text-muted-foreground">
-              I thrive on turning complex problems into simple, elegant solutions. Whether it&apos;s building a responsive front-end or designing a robust back-end, I&apos;m always eager to learn new technologies and apply my skills to create meaningful impact.
+              I thrive on turning complex problems into simple, elegant solutions. Whether it's building a responsive front-end or designing a robust back-end, I'm always eager to learn new technologies and apply my skills to create meaningful impact.
             </p>
             <p className="text-muted-foreground">
-              When I&apos;m not coding, you can find me staying active as an athlete or reading a good book.
+              When I'm not coding, you can find me staying active as an athlete or reading a good book.
             </p>
           </div>
         </div>
