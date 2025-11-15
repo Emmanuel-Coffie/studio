@@ -1,12 +1,6 @@
 {
   "placeholderImages": [
     {
-      "id": "about-me",
-      "description": "A portrait of Emmanuel Mawutor Coffie.",
-      "imageUrl": "https://storage.googleapis.com/res-volta-arch-405315-studio-data/users/L3Boc3lqMGF4N3E1cHRoY3MwbzY/studios/c90zsle95j/media/2024-07-27-02-14-36-224424_Emmanuel_Mawutor_Coffie.jpg",
-      "imageHint": "professional portrait"
-    },
-    {
       "id": "project-1",
       "description": "Screenshot of Project One.",
       "imageUrl": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsYXB0b3AlMjBjb2RlfGVufDB8fHx8MTc2MjkxNzE0NXww&ixlib=rb-4.1.0&q=80&w=1080",

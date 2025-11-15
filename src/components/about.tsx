@@ -1,11 +1,9 @@
 import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { SectionWrapper, SectionHeader, SectionTitle, SectionDescription } from './section-wrapper';
 import { CardGlass } from './card-glass';
+import aboutMeImage from '@/app/Gemini_Generated_Image_tvqr2xtvqr2xtvqr.jpg';
 
 export function About() {
-  const aboutImage = PlaceHolderImages.find(img => img.id === 'about-me');
-
   return (
     <SectionWrapper id="about">
       <SectionHeader>
@@ -18,16 +16,14 @@ export function About() {
         <CardGlass>
           <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-12 p-8">
             <div className="relative mx-auto h-64 w-64 flex justify-center">
-              {aboutImage && (
                 <Image 
-                  src={aboutImage.imageUrl} 
-                  alt={aboutImage.description} 
+                  src={aboutMeImage} 
+                  alt="A portrait of Emmanuel Mawutor Coffie."
                   width={256}
                   height={256}
                   className="rounded-full border-4 border-white/20 shadow-lg object-cover"
-                  data-ai-hint={aboutImage.imageHint}
+                  data-ai-hint="professional portrait"
                 />
-              )}
             </div>
             <div className="space-y-4 text-center md:text-left">
               <h3 className="font-headline text-2xl font-bold text-primary">
