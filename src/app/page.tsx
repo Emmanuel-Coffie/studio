@@ -4,7 +4,6 @@ import { Hero } from '@/components/hero';
 import { About } from '@/components/about';
 import { Skills } from '@/components/skills';
 import { Projects } from '@/components/projects';
-import { Blog } from '@/components/blog';
 import { AiReview } from '@/components/ai-review';
 import { Contact } from '@/components/contact';
 import { Footer } from '@/components/footer';
@@ -18,7 +17,6 @@ export default function Home() {
         <About />
         <Skills />
         <Projects />
-        <Blog />
         <AiReview />
         <Contact />
       </main>
