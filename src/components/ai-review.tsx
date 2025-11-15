@@ -1,9 +1,10 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { getPortfolioReview } from '@/app/actions';
 import { SectionWrapper, SectionHeader, SectionTitle, SectionDescription } from './section-wrapper';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { CardContent, CardHeader, CardTitle } from './ui/card';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { Loader2, Sparkles, Wand2 } from 'lucide-react';
@@ -36,7 +37,7 @@ function SubmitButton() {
 }
 
 export function AiReview() {
-  const [state, formAction] = useFormState(getPortfolioReview, initialState);
+  const [state, formAction] = useActionState(getPortfolioReview, initialState);
 
   return (
     <SectionWrapper id="ai-review">
