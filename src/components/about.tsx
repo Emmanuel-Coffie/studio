@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { SectionWrapper, SectionHeader, SectionTitle, SectionDescription } from './section-wrapper';
-import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
 
 export function About() {
   const aboutImage = PlaceHolderImages.find(img => img.id === 'about-me');
@@ -16,12 +15,16 @@ export function About() {
       </SectionHeader>
       <div className="mx-auto max-w-5xl">
         <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-12">
-          <div className="relative mx-auto w-full max-w-sm flex justify-center">
+          <div className="relative mx-auto h-64 w-64 flex justify-center">
             {aboutImage && (
-              <Avatar className="h-64 w-64 border-4 border-white/20 shadow-lg">
-                <AvatarImage src={aboutImage.imageUrl} alt={aboutImage.description} />
-                <AvatarFallback>EC</AvatarFallback>
-              </Avatar>
+              <Image 
+                src={aboutImage.imageUrl} 
+                alt={aboutImage.description} 
+                width={256}
+                height={256}
+                className="rounded-full border-4 border-white/20 shadow-lg object-cover"
+                data-ai-hint={aboutImage.imageHint}
+              />
             )}
           </div>
           <div className="space-y-4 text-center md:text-left">
