@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { SectionWrapper, SectionHeader, SectionTitle, SectionDescription } from './section-wrapper';
 import { CardGlass } from './card-glass';
-import aboutMeImage from '@/app/Gemini_Generated_Image_tvqr2xtvqr2xtvqr.jpg';
 
 export function About() {
   return (
@@ -17,7 +16,7 @@ export function About() {
           <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-12 p-8">
             <div className="relative mx-auto h-64 w-64 flex justify-center">
                 <Image 
-                  src={aboutMeImage} 
+                  src="/Gemini_Generated_Image_tvqr2xtvqr2xtvqr.jpg"
                   alt="A portrait of Emmanuel Mawutor Coffie."
                   width={256}
                   height={256}
