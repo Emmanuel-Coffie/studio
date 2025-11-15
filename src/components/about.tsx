@@ -13,13 +13,13 @@ export function About() {
       </SectionHeader>
       <div className="mx-auto max-w-5xl">
         <CardGlass>
-          <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-12 p-8">
-            <div className="relative mx-auto h-80 w-80 flex justify-center">
+          <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-16 p-8">
+            <div className="relative mx-auto h-96 w-96 flex justify-center">
                 <Image 
                   src="/Gemini_Generated_Image_tvqr2xtvqr2xtvqr.png"
                   alt="A portrait of Emmanuel Mawutor Coffie."
-                  width={320}
-                  height={320}
+                  width={384}
+                  height={384}
                   className="rounded-full border-4 border-white/20 shadow-lg object-cover"
                   data-ai-hint="professional portrait"
                 />
