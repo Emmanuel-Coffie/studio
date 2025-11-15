@@ -16,7 +16,7 @@ export function About() {
           <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-12 p-8">
             <div className="relative mx-auto h-64 w-64 flex justify-center">
                 <Image 
-                  src="/Gemini_Generated_Image_tvqr2xtvqr2xtvqr.jpg"
+                  src="/Gemini_Generated_Image_tvqr2xtvqr2xtvqr.png"
                   alt="A portrait of Emmanuel Mawutor Coffie."
                   width={256}
                   height={256}
