@@ -51,23 +51,13 @@ export type Project = {
 
 export const projectsData: Project[] = [
   {
-    id: 'proj-1',
-    title: 'E-Commerce Platform',
-    description:
-      'A full-featured e-commerce site with product listings, user authentication, and a Stripe-integrated checkout process.',
-    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Stripe'],
-    liveLink: '#',
-    repoLink: '#',
-    imagePlaceholder: 'project-1',
-  },
-  {
     id: 'proj-2',
     title: 'Task Management App',
     description:
-      'A responsive web app for managing tasks and projects, featuring drag-and-drop functionality and real-time collaboration.',
+      'A responsive web app designed for student athletes to balance academics and training schedules effectively.',
     techStack: ['React', 'Redux', 'Node.js', 'Express', 'MongoDB'],
-    liveLink: '#',
-    repoLink: '#',
+    liveLink: 'https://studio--studio-9801103337-6fd4f.us-central1.hosted.app/',
+    repoLink: '',
     imagePlaceholder: 'project-2',
   },
   {
@@ -75,9 +65,9 @@ export const projectsData: Project[] = [
     title: 'Strategic Performance Monitoring System',
     description:
       'A system to track and analyze key performance indicators for business strategy, enabling data-driven decision-making.',
-    techStack: ['React', 'Node.js', 'PostgreSQL', 'Chart.js'],
-    liveLink: '#',
-    repoLink: '#',
+    techStack: ['React', 'Node.js', 'MySQL', 'MUI', 'Chart.js'],
+    liveLink: 'https://performance-admin.vercel.app/',
+    repoLink: 'https://github.com/Emmanuel-Coffie/performance-admin',
     imagePlaceholder: 'project-5',
   },
   {
@@ -86,8 +76,8 @@ export const projectsData: Project[] = [
     description:
       'An analytics dashboard that visualizes complex data sets using D3.js, providing interactive charts and graphs.',
     techStack: ['React', 'D3.js', 'Python', 'Flask', 'PostgreSQL'],
-    liveLink: '#',
-    repoLink: '#',
+    liveLink: '',
+    repoLink: 'https://github.com/Emmanuel-Coffie/Call-center-data',
     imagePlaceholder: 'project-3',
   },
   {
@@ -96,8 +86,8 @@ export const projectsData: Project[] = [
     description:
       'A performant, statically-generated blog built with a headless CMS for easy content management and optimal SEO.',
     techStack: ['Gatsby', 'GraphQL', 'Contentful', 'Styled Components'],
-    liveLink: '#',
-    repoLink: '#',
+    liveLink: '',
+    repoLink: '',
     imagePlaceholder: 'project-4',
   },
 ];

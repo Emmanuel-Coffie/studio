@@ -46,18 +46,22 @@ export function Projects() {
                 </div>
               </CardContent>
               <CardFooter className="flex gap-2">
-                <Button asChild variant="outline">
-                  <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                    <Github />
-                    <span>GitHub</span>
-                  </Link>
-                </Button>
-                <Button asChild>
-                  <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink />
-                    <span>Live Demo</span>
-                  </Link>
-                </Button>
+                {project.repoLink && project.repoLink !== '#' && (
+                  <Button asChild variant="outline">
+                    <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                      <Github className="mr-2 h-4 w-4" />
+                      <span>GitHub</span>
+                    </Link>
+                  </Button>
+                )}
+                {project.liveLink && project.liveLink !== '#' && (
+                  <Button asChild>
+                    <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      <span>Live Demo</span>
+                    </Link>
+                  </Button>
+                )}
               </CardFooter>
             </CardGlass>
           );
