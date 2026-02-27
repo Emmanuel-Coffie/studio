@@ -9,32 +9,31 @@ A modern, responsive personal portfolio built with Next.js, Tailwind CSS, and AI
 - **Contact Form**: Integrated with Resend for automated email notifications and confirmations.
 - **Dark Mode**: Supports light and dark themes using `next-themes`.
 
-## Getting Started
+## Local Development Setup
 
-1.  **Clone the repository**:
-    ```bash
-    git clone <your-repo-url>
-    ```
+To get this project running on your own computer:
 
-2.  **Install dependencies**:
+1.  **Download and Unzip**: Use the download button in Firebase Studio to get the project files.
+2.  **Install Node.js**: Ensure you have Node.js installed on your machine.
+3.  **Install Dependencies**:
     ```bash
     npm install
     ```
-
-3.  **Set up environment variables**:
+4.  **Important: Add Your Image**:
+    - Create a folder named `public` at the root of the project (if it doesn't exist).
+    - Place your image file `Gemini_Generated_Image_tvqr2xtvqr2xtvqr.png` inside the `public` folder.
+5.  **Set up environment variables**:
     Create a `.env` file in the root directory and add your Resend API key:
     ```env
     RESEND_API_KEY=your_resend_api_key_here
     ```
-
-4.  **Run the development server**:
+6.  **Run the development server**:
     ```bash
     npm run dev
     ```
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## How to Push to GitHub
-
-If you haven't initialized a git repository yet, follow these steps in your terminal:
 
 1.  **Initialize Git**:
     ```bash
