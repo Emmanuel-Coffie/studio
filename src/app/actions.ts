@@ -5,7 +5,8 @@ import { z } from 'zod';
 import { portfolioReview } from '@/ai/flows/portfolio-review';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Safely initialize Resend to avoid crashing if the API key is missing
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 // AI Portfolio Review Action
 const ReviewStateSchema = z.object({
@@ -93,7 +94,7 @@ export async function submitContactForm(
     try {
         const { name, email, message } = validatedFields.data;
 
-        if (!process.env.RESEND_API_KEY) {
+        if (!resend) {
             console.warn('RESEND_API_KEY is missing. Emails will not be sent.');
             return {
                 message: 'Form submitted successfully, but email sending is currently disabled (missing API key).',
