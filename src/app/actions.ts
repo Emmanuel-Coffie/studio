@@ -1,7 +1,11 @@
+
 'use server';
 
 import { z } from 'zod';
 import { portfolioReview } from '@/ai/flows/portfolio-review';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // AI Portfolio Review Action
 const ReviewStateSchema = z.object({
@@ -87,23 +91,40 @@ export async function submitContactForm(
     }
 
     try {
-        console.log('Form data submitted:');
-        console.log('Name:', validatedFields.data.name);
-        console.log('Email:', validatedFields.data.email);
-        console.log('Message:', validatedFields.data.message);
-        
-        // Here you would typically integrate with an email service (e.g., SendGrid, Resend)
-        // For this example, we'll just simulate a successful submission.
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        const { name, email, message } = validatedFields.data;
+
+        if (!process.env.RESEND_API_KEY) {
+            console.warn('RESEND_API_KEY is missing. Emails will not be sent.');
+            return {
+                message: 'Form submitted successfully, but email sending is currently disabled (missing API key).',
+                success: true,
+            };
+        }
+
+        // 1. Send notification email to the owner
+        await resend.emails.send({
+            from: 'Portfolio Contact <onboarding@resend.dev>',
+            to: 'coffie09emmanuel@gmail.com',
+            subject: `Aura Folio: New message from ${name}`,
+            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+        });
+
+        // 2. Send confirmation email to the sender
+        await resend.emails.send({
+            from: 'Emmanuel Mawutor Coffie <onboarding@resend.dev>',
+            to: email,
+            subject: 'Thank you for your message!',
+            text: `Hi ${name},\n\nThank you for reaching out! I have received your message and will get back to you as soon as possible.\n\nBest regards,\nEmmanuel Mawutor Coffie`,
+        });
 
         return {
-            message: 'Thank you for your message! I will get back to you soon.',
+            message: 'Thank you for your message! I have received it and sent you a confirmation email.',
             success: true,
         };
     } catch (error) {
         console.error('Contact Form Error:', error);
         return {
-            message: 'An unexpected error occurred. Please try again later.',
+            message: 'An unexpected error occurred while sending your message. Please try again later.',
             success: false,
         };
     }
