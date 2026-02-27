@@ -13,14 +13,14 @@ A modern, responsive personal portfolio built with Next.js, Tailwind CSS, and AI
 
 To get this project running on your own computer:
 
-1.  **Download and Unzip**: Use the download button in Firebase Studio to get the project files.
+1.  **Download and Unzip**: Use the download button in Firebase Studio to get the project source code.
 2.  **Install Node.js**: Ensure you have Node.js installed on your machine.
 3.  **Install Dependencies**:
     ```bash
     npm install
     ```
 4.  **Important: Add Your Image**:
-    - Create a folder named `public` at the root of the project (if it doesn't exist).
+    - Create a folder named `public` at the root of the project.
     - Place your image file `Gemini_Generated_Image_tvqr2xtvqr2xtvqr.png` inside the `public` folder.
 5.  **Set up environment variables**:
     Create a `.env` file in the root directory and add your Resend API key:
@@ -32,6 +32,19 @@ To get this project running on your own computer:
     npm run dev
     ```
     Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Production Build
+
+To create an optimized production version of your app:
+
+1.  **Build the project**:
+    ```bash
+    npm run build
+    ```
+2.  **Start the production server**:
+    ```bash
+    npm start
+    ```
 
 ## How to Push to GitHub
 
