@@ -36,7 +36,16 @@ const prompt = ai.definePrompt({
   name: 'portfolioReviewPrompt',
   input: {schema: PortfolioReviewInputSchema},
   output: {schema: PortfolioReviewOutputSchema},
-  prompt: `You are an expert portfolio reviewer specializing in providing feedback on portfolio presentation and suggesting improvements based on industry best practices, design principles, and UX guidelines.\n\nYou will use the following information to review the portfolio and provide feedback and suggestions.\n\nPortfolio Description: {{{portfolioDescription}}}`,
+  prompt: `You are an elite portfolio consultant and design critic specializing in high-end tech portfolios. 
+  Your goal is to provide a comprehensive, constructive, and inspiring review of a professional portfolio based on its description.
+
+  Portfolio Description: {{{portfolioDescription}}}
+
+  Please structure your output into two clear parts:
+  1. Feedback: A thoughtful analysis of the current presentation, highlighting strengths and identifying areas that lack clarity or impact.
+  2. Suggestions: Actionable, high-level advice on UX, visual design, and content strategy to elevate the portfolio to industry-leading standards.
+
+  Be professional, encouraging, and specific. Use professional design terminology where appropriate.`,
 });
 
 const portfolioReviewFlow = ai.defineFlow(
