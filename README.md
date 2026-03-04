@@ -1,56 +1,62 @@
 # Aura Folio
 
-A modern, responsive personal portfolio built with Next.js, Tailwind CSS, and AI-powered features.
+A professional, AI-powered personal portfolio built with Next.js, Tailwind CSS, and Genkit.
 
-## Features
+## 🚀 Launch Checklist
 
-- **Responsive Design**: Optimized for all screen sizes (Mobile, Tablet, Desktop).
-- **AI Portfolio Review**: Get instant feedback on your portfolio presentation using Google Gemini.
-- **Contact Form**: Integrated with Resend for automated email notifications and confirmations.
-- **Dark Mode**: Supports light and dark themes using `next-themes`.
+Follow these steps to get your portfolio live:
 
-## Local Development Setup
+### 1. Download and Extract
+*   Download the source code as a ZIP file from Firebase Studio.
+*   Extract the contents to a new folder on your computer.
 
-To get this project running on your own computer:
-
-1.  **Download and Unzip**: Use the download button in Firebase Studio to get the project source code.
-2.  **Install Node.js**: Ensure you have Node.js installed on your machine.
-3.  **Install Dependencies**:
+### 2. Set Up Your Environment
+*   **Install Node.js**: Download from [nodejs.org](https://nodejs.org/).
+*   **Install Dependencies**: Open your terminal in the project folder and run:
     ```bash
     npm install
     ```
-4.  **Important: Add Your Image**:
-    - Create a folder named `public` at the root of the project.
-    - Place your image file `Gemini_Generated_Image_tvqr2xtvqr2xtvqr.png` inside the `public` folder.
-5.  **Set up environment variables**:
-    Create a `.env` file in the root directory and add your keys:
+*   **Create a .env file**: Create a file named `.env` in the root directory and add your API keys:
     ```env
-    # For AI features (Get from https://aistudio.google.com/)
+    # Get from https://aistudio.google.com/
     GOOGLE_GENAI_API_KEY=your_google_ai_api_key_here
 
-    # For Contact Form (Get from https://resend.com/)
+    # Get from https://resend.com/
     RESEND_API_KEY=your_resend_api_key_here
     ```
-6.  **Run the development server**:
+
+### 3. Run Locally
+```bash
+npm run dev
+```
+Visit `http://localhost:3000` to see your site in action!
+
+### 4. Push to GitHub
+1.  **Create a Repo**: Go to GitHub and create a new repository.
+2.  **Initialize Git**: 
     ```bash
-    npm run dev
+    git init
+    git add .
+    git commit -m "Initial commit: Aura Folio"
     ```
-    Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Important Note on Emails (Resend)
-By default, Resend's free tier (`onboarding@resend.dev`) only allows you to send emails **to your own account email**. To send emails to other people (like the visitor confirmation email), you will need to:
-1.  Add and verify your own domain in the [Resend Dashboard](https://resend.com/domains).
-2.  Update the `from` address in `src/app/actions.ts` to use your verified domain.
-
-## How to Push to GitHub
-
-1.  **Initialize Git**: `git init`
-2.  **Add all files**: `git add .`
-3.  **Commit your changes**: `git commit -m "Initial commit: Aura Folio setup"`
-4.  **Create a new repository on GitHub** (without a README or .gitignore).
-5.  **Link and push**:
+3.  **Connect and Push**:
     ```bash
     git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
     git branch -M main
     git push -u origin main
     ```
+
+## 🛠 Features
+
+*   **Responsive Design**: Pixel-perfect on mobile, tablet, and desktop.
+*   **AI Portfolio Consultant**: Uses Google Gemini to analyze and improve your portfolio presentation.
+*   **Automated Contact Form**: Integrated with Resend for lead notifications and auto-replies.
+*   **Glassmorphism UI**: Modern aesthetic with beautiful backdrop blurs and subtle animations.
+
+## ✉️ A Note on Emails (Resend)
+By default, Resend's free tier (`onboarding@resend.dev`) only allows you to send emails **to your own account email**. 
+*   Your notification email (to `coffie09emmanuel@gmail.com`) will work immediately.
+*   To send confirmation emails to visitors, you must verify your domain in the [Resend Dashboard](https://resend.com/domains).
+
+## 📄 License
+MIT © Emmanuel Mawutor Coffie

@@ -93,7 +93,7 @@ export function AiReview() {
               </CardHeader>
               <Separator className="bg-white/10 mx-6" />
               <CardContent className="pt-6 flex-1">
-                <div className="prose prose-invert max-w-none">
+                <div className="max-w-none">
                   <p className="whitespace-pre-wrap text-muted-foreground leading-relaxed text-base">
                     {state.feedback}
                   </p>
@@ -110,7 +110,7 @@ export function AiReview() {
               </CardHeader>
               <Separator className="bg-white/10 mx-6" />
               <CardContent className="pt-6 flex-1">
-                <div className="prose prose-invert max-w-none">
+                <div className="max-w-none">
                   <p className="whitespace-pre-wrap text-muted-foreground leading-relaxed text-base">
                     {state.suggestions}
                   </p>
@@ -119,7 +119,7 @@ export function AiReview() {
             </CardGlass>
             
             <div className="md:col-span-2 text-center text-sm text-muted-foreground/50 pt-4 font-mono">
-              PROCESSED BY GEMINI 2.0 & GENKIT
+              PROCESSED BY GEMINI 1.5 FLASH & GENKIT
             </div>
           </div>
         )}
