@@ -53,7 +53,7 @@ export async function getPortfolioReview(
       message: null,
     };
   } catch (error: any) {
-    console.error('AI Review Error Detail:', error);
+    console.error('AI Review Action Error:', error);
     
     let userMessage = 'The AI is taking a moment to think. Please try again in a few seconds.';
     
@@ -62,12 +62,12 @@ export async function getPortfolioReview(
     
     if (errorString.includes('API_KEY_INVALID') || errorString.includes('401') || errorString.includes('API key')) {
       userMessage = 'AI service is currently unavailable. Please ensure your GOOGLE_GENAI_API_KEY is correctly set in your environment variables.';
-    } else if (errorString.includes('404') || errorString.includes('not found')) {
-      userMessage = 'The requested AI model could not be found. This might be a temporary service issue or a configuration mismatch.';
+    } else if (errorString.includes('404') || errorString.toLowerCase().includes('not found')) {
+      userMessage = `The AI model could not be found. Detailed error: ${errorString.substring(0, 100)}...`;
     } else if (errorString.includes('SAFETY')) {
       userMessage = 'The AI could not process this description due to safety filters. Please try rephrasing your description.';
     } else if (errorString) {
-      userMessage = `AI Error: ${errorString}`;
+      userMessage = `AI Error: ${errorString.substring(0, 150)}`;
     }
 
     return {

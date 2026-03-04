@@ -33,7 +33,7 @@ export async function portfolioReview(input: PortfolioReviewInput): Promise<Port
 
 const prompt = ai.definePrompt({
   name: 'portfolioReviewPrompt',
-  model: 'googleai/gemini-1.5-flash-latest',
+  model: 'googleai/gemini-1.5-flash',
   input: {schema: PortfolioReviewInputSchema},
   output: {schema: PortfolioReviewOutputSchema},
   prompt: `You are an elite Creative Director and UX Strategist at a top-tier design agency. 
@@ -55,10 +55,15 @@ const portfolioReviewFlow = ai.defineFlow(
     outputSchema: PortfolioReviewOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    if (!output) {
-      throw new Error('The AI failed to generate a response. This can happen if the input is too brief or violates safety guidelines.');
+    try {
+      const {output} = await prompt(input);
+      if (!output) {
+        throw new Error('The AI service returned an empty output object.');
+      }
+      return output;
+    } catch (error: any) {
+      console.error('Genkit Flow Error:', error);
+      throw error;
     }
-    return output;
   }
 );
