@@ -91,3 +91,47 @@ export const projectsData: Project[] = [
     imagePlaceholder: 'project-4',
   },
 ];
+
+export type Experience = {
+  id: string;
+  title: string;
+  organization: string;
+  period: string;
+  description: string;
+  type: 'work' | 'education' | 'achievement';
+};
+
+export const experienceData: Experience[] = [
+  {
+    id: 'exp-1',
+    title: 'Full-Stack Developer',
+    organization: 'Tech Innovators Inc.',
+    period: '2023 - Present',
+    description: 'Leading the development of scalable web applications using React and Node.js. Focused on optimizing performance and user experience.',
+    type: 'work',
+  },
+  {
+    id: 'exp-2',
+    title: 'Freelance Software Engineer',
+    organization: 'Self-Employed',
+    period: '2021 - 2023',
+    description: 'Developed custom digital solutions for small businesses, including e-commerce platforms and automated booking systems.',
+    type: 'work',
+  },
+  {
+    id: 'exp-3',
+    title: 'B.Sc. Computer Science',
+    organization: 'University of Technology',
+    period: '2017 - 2021',
+    description: 'Graduated with honors, focusing on software engineering principles, algorithms, and data structures.',
+    type: 'education',
+  },
+  {
+    id: 'exp-4',
+    title: 'Collegiate Track Athlete',
+    organization: 'University Athletics',
+    period: '2017 - 2021',
+    description: 'Represented the university in regional and national competitions, balancing rigorous training with academic excellence.',
+    type: 'achievement',
+  },
+];

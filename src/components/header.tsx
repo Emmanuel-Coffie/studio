@@ -17,8 +17,9 @@ import { Switch } from './ui/switch';
 const navItems = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
+  { href: '#journey', label: 'Journey' },
   { href: '#projects', label: 'Projects' },
-  { href: '#ai-catalyst', label: 'AI Catalyst' },
+  { href: '#ai-catalyst', label: 'AI Architect' },
   { href: '#contact', label: 'Contact' },
 ];
 
