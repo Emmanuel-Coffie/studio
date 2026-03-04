@@ -31,19 +31,19 @@ function ThemeToggle() {
     }, []);
 
     if (!mounted) {
-        return null;
+        return <div className="w-20 h-6" />; // Placeholder to avoid layout shift
     }
   
     return (
         <div className="flex items-center space-x-2">
-            <Sun className="h-5 w-5" />
+            <Sun className="h-4 w-4 sm:h-5 sm:w-5" />
             <Switch
                 id="theme-switch"
                 checked={theme === 'dark'}
                 onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
                 aria-label="Toggle theme"
             />
-            <Moon className="h-5 w-5" />
+            <Moon className="h-4 w-4 sm:h-5 sm:w-5" />
         </div>
     );
   }
@@ -67,7 +67,7 @@ export function Header() {
         href={item.href}
         className={cn(
           'font-medium transition-colors hover:text-primary',
-          inSheet ? 'block py-2 text-lg' : 'text-sm'
+          inSheet ? 'block py-4 text-xl border-b border-white/5' : 'text-sm'
         )}
         onClick={() => setIsMobileMenuOpen(false)}
       >
@@ -79,53 +79,51 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
+        'sticky top-0 z-50 w-full transition-all duration-300 h-16 sm:h-20 flex items-center',
         isScrolled
-          ? 'border-b border-white/10 bg-background/80 backdrop-blur-lg'
+          ? 'border-b border-white/10 bg-background/80 backdrop-blur-lg shadow-sm'
           : 'bg-transparent'
       )}
     >
-      <div className="container flex h-20 items-center justify-between">
+      <div className="container flex items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2" aria-label="Home">
           <Logo className="h-6 w-6 text-primary" />
-          <span className="font-headline text-lg font-semibold tracking-wider text-foreground">
+          <span className="font-headline text-base sm:text-lg font-semibold tracking-wider text-foreground">
             Aura Folio
           </span>
         </Link>
-        <nav className="hidden items-center gap-6 md:flex">
+        
+        <nav className="hidden items-center gap-8 md:flex">
           <NavLinks />
           <ThemeToggle />
         </nav>
-        <div className="md:hidden">
+
+        <div className="flex items-center gap-4 md:hidden">
+          <ThemeToggle />
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Menu className="h-5 w-5" />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full sm:w-3/4 bg-background/80 backdrop-blur-lg border-l-white/10">
-              <div className="p-6 h-full flex flex-col">
-                <div className="flex items-center justify-between mb-8">
+            <SheetContent side="right" className="w-full sm:max-w-xs bg-background/95 backdrop-blur-xl border-l-white/10 p-0">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-between p-6 border-b border-white/10">
                    <Link href="/" className="flex items-center gap-2" aria-label="Home" onClick={() => setIsMobileMenuOpen(false)}>
                       <Logo className="h-6 w-6 text-primary" />
                       <span className="font-headline text-lg font-semibold tracking-wider text-foreground">
                         Aura Folio
                       </span>
                     </Link>
-                    <SheetTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <X className="h-6 w-6" />
-                        <span className="sr-only">Close menu</span>
-                      </Button>
-                    </SheetTrigger>
+                    <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
+                      <X className="h-6 w-6" />
+                      <span className="sr-only">Close menu</span>
+                    </Button>
                 </div>
-                <nav className="flex flex-col gap-4">
+                <nav className="flex flex-col p-6">
                   <NavLinks inSheet />
                 </nav>
-                <div className="mt-auto pt-6">
-                    <ThemeToggle />
-                </div>
               </div>
             </SheetContent>
           </Sheet>

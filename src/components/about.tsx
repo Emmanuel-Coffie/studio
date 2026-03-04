@@ -13,13 +13,12 @@ export function About() {
       </SectionHeader>
       <div className="mx-auto max-w-5xl">
         <CardGlass>
-          <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-16 p-8">
-            <div className="relative mx-auto h-96 w-96 flex justify-center">
+          <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-16 p-4 sm:p-8">
+            <div className="relative mx-auto aspect-square w-full max-w-[300px] sm:max-w-[384px]">
                 <Image 
                   src="/Gemini_Generated_Image_tvqr2xtvqr2xtvqr.png"
                   alt="A portrait of Emmanuel Mawutor Coffie."
-                  width={384}
-                  height={384}
+                  fill
                   className="rounded-full border-4 border-white/20 shadow-lg object-cover"
                   data-ai-hint="professional portrait"
                 />
@@ -28,13 +27,13 @@ export function About() {
               <h3 className="font-headline text-2xl font-bold text-primary">
                 Developer, Innovator, Problem-Solver
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 Hello! I'm Emmanuel Mawutor Coffie, a passionate developer with a knack for creating beautiful and functional digital products. My journey into tech started with a simple curiosity about how websites worked, and it has since evolved into a full-fledged passion for software engineering and user-centric design.
               </p>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 I thrive on turning complex problems into simple, elegant solutions. Whether it's building a responsive front-end or designing a robust back-end, I'm always eager to learn new technologies and apply my skills to create meaningful impact.
               </p>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 When I'm not coding, you can find me staying active as an athlete or reading a good book.
               </p>
             </div>
