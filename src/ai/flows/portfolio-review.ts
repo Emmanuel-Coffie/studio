@@ -19,11 +19,11 @@ const PortfolioReviewInputSchema = z.object({
 export type PortfolioReviewInput = z.infer<typeof PortfolioReviewInputSchema>;
 
 const PortfolioReviewOutputSchema = z.object({
-  feedback: z.string().describe('The feedback on the portfolio presentation.'),
+  feedback: z.string().describe('The professional feedback on the portfolio presentation.'),
   suggestions: z
     .string()
     .describe(
-      'The suggestions for improving the portfolio based on industry best practices, design principles, and UX guidelines.'
+      'Actionable suggestions for improving the portfolio based on industry best practices, design principles, and UX guidelines.'
     ),
 });
 export type PortfolioReviewOutput = z.infer<typeof PortfolioReviewOutputSchema>;
@@ -36,16 +36,16 @@ const prompt = ai.definePrompt({
   name: 'portfolioReviewPrompt',
   input: {schema: PortfolioReviewInputSchema},
   output: {schema: PortfolioReviewOutputSchema},
-  prompt: `You are an elite portfolio consultant and design critic specializing in high-end tech portfolios. 
-  Your goal is to provide a comprehensive, constructive, and inspiring review of a professional portfolio based on its description.
+  prompt: `You are an elite Creative Director and UX Strategist at a top-tier design agency. 
+  Your goal is to provide a comprehensive, high-level, and constructive review of a professional portfolio based on its description.
 
-  Portfolio Description: {{{portfolioDescription}}}
+  Portfolio Context: {{{portfolioDescription}}}
 
-  Please structure your output into two clear parts:
-  1. Feedback: A thoughtful analysis of the current presentation, highlighting strengths and identifying areas that lack clarity or impact.
-  2. Suggestions: Actionable, high-level advice on UX, visual design, and content strategy to elevate the portfolio to industry-leading standards.
+  Please structure your output into two highly professional and encouraging parts:
+  1. Feedback: A thoughtful analysis of the current presentation. Focus on brand identity, visual hierarchy, and the emotional resonance of the design.
+  2. Suggestions: Actionable, strategic advice to elevate the portfolio to industry-leading standards. Focus on user flow, conversion (getting hired), and content strategy.
 
-  Be professional, encouraging, and specific. Use professional design terminology where appropriate.`,
+  Tone: Expert, inspiring, and direct. Use professional terminology (e.g., whitespace, typography, accessibility, conversion path).`,
 });
 
 const portfolioReviewFlow = ai.defineFlow(

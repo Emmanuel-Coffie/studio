@@ -7,7 +7,7 @@ import { SectionWrapper, SectionHeader, SectionTitle, SectionDescription } from 
 import { CardContent, CardHeader, CardTitle } from './ui/card';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
-import { Loader2, Sparkles, Wand2, Lightbulb, CheckCircle2 } from 'lucide-react';
+import { Loader2, Sparkles, Lightbulb, CheckCircle2, Info } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { CardGlass } from './card-glass';
 import { Separator } from './ui/separator';
@@ -29,12 +29,12 @@ function SubmitButton() {
       {pending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          AI Brainstorming...
+          Analyzing Portfolio...
         </>
       ) : (
         <>
           <Sparkles className="mr-2 h-4 w-4" />
-          Get Professional Review
+          Get Expert Review
         </>
       )}
     </Button>
@@ -53,23 +53,27 @@ export function AiReview() {
         </SectionDescription>
       </SectionHeader>
       
-      <div className="mx-auto max-w-3xl">
-        <CardGlass className="mb-8">
+      <div className="mx-auto max-w-4xl space-y-8">
+        <CardGlass className="border-white/10 shadow-xl">
           <CardContent className="p-6">
-            <form action={formAction} className="space-y-4">
-              <div className="space-y-2">
+            <form action={formAction} className="space-y-6">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground/80">
+                  <Info className="h-4 w-4" />
+                  <span>Tip: Mention your target industry and tech stack for better results.</span>
+                </div>
                 <Textarea
                   name="portfolioDescription"
-                  placeholder="Describe your portfolio details... (e.g., 'A dark-themed minimalist UI for a backend dev. Using glowing accents. Featured projects show as large cards with hover states...')"
+                  placeholder="Describe your portfolio details... (e.g., 'I am a backend dev using a minimalist dark theme with neon purple accents. My projects are listed as a vertical timeline...')"
                   rows={6}
                   required
-                  className="bg-white/5 border-white/20 placeholder:text-muted-foreground/40 focus:border-accent/50 transition-colors"
+                  className="bg-white/5 border-white/20 placeholder:text-muted-foreground/40 focus:border-accent/50 transition-colors resize-none text-lg p-4"
                 />
-                <p className="text-xs text-muted-foreground/60 text-right">Minimum 50 characters for better results.</p>
+                <p className="text-xs text-muted-foreground/60 text-right">Minimum 50 characters required.</p>
               </div>
               <SubmitButton />
               {state?.message && !state.feedback && (
-                <Alert variant="destructive" className="mt-4">
+                <Alert variant="destructive" className="mt-4 border-destructive/50 bg-destructive/5">
                   <AlertTitle>Notice</AlertTitle>
                   <AlertDescription>{state.message}</AlertDescription>
                 </Alert>
@@ -79,43 +83,43 @@ export function AiReview() {
         </CardGlass>
 
         {state?.feedback && state?.suggestions && (
-          <div className="space-y-6 animate-fade-in">
-            <CardGlass className="border-primary/20">
+          <div className="grid gap-6 md:grid-cols-2 animate-fade-in">
+            <CardGlass className="border-primary/20 flex flex-col">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 font-headline text-2xl text-foreground">
+                <CardTitle className="flex items-center gap-3 font-headline text-2xl text-foreground">
                   <CheckCircle2 className="text-primary h-6 w-6" />
-                  Design Critique
+                  Visual Analysis
                 </CardTitle>
-                <Separator className="bg-white/10" />
               </CardHeader>
-              <CardContent className="pt-4">
+              <Separator className="bg-white/10 mx-6" />
+              <CardContent className="pt-6 flex-1">
                 <div className="prose prose-invert max-w-none">
-                  <p className="whitespace-pre-wrap text-muted-foreground leading-relaxed">
+                  <p className="whitespace-pre-wrap text-muted-foreground leading-relaxed text-base">
                     {state.feedback}
                   </p>
                 </div>
               </CardContent>
             </CardGlass>
 
-            <CardGlass className="border-accent/20 bg-accent/5">
+            <CardGlass className="border-accent/20 bg-accent/5 flex flex-col">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 font-headline text-2xl text-foreground">
+                <CardTitle className="flex items-center gap-3 font-headline text-2xl text-foreground">
                   <Lightbulb className="text-accent h-6 w-6" />
-                  Strategic Improvements
+                  Actionable Steps
                 </CardTitle>
-                <Separator className="bg-white/10" />
               </CardHeader>
-              <CardContent className="pt-4">
+              <Separator className="bg-white/10 mx-6" />
+              <CardContent className="pt-6 flex-1">
                 <div className="prose prose-invert max-w-none">
-                  <p className="whitespace-pre-wrap text-muted-foreground leading-relaxed">
+                  <p className="whitespace-pre-wrap text-muted-foreground leading-relaxed text-base">
                     {state.suggestions}
                   </p>
                 </div>
               </CardContent>
             </CardGlass>
             
-            <div className="text-center text-sm text-muted-foreground/50 pt-4">
-              Powered by Genkit & Gemini 1.5 Flash
+            <div className="md:col-span-2 text-center text-sm text-muted-foreground/50 pt-4 font-mono">
+              PROCESSED BY GEMINI 2.0 & GENKIT
             </div>
           </div>
         )}
