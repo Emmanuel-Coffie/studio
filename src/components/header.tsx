@@ -18,7 +18,7 @@ const navItems = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
-  { href: '#ai-review', label: 'AI Review' },
+  { href: '#ai-catalyst', label: 'AI Catalyst' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -31,7 +31,7 @@ function ThemeToggle() {
     }, []);
 
     if (!mounted) {
-        return <div className="w-20 h-6" />; // Placeholder to avoid layout shift
+        return <div className="w-20 h-6" />;
     }
   
     return (

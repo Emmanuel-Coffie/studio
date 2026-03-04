@@ -1,79 +1,59 @@
 'use server';
 
 import { z } from 'zod';
-import { portfolioReview } from '@/ai/flows/portfolio-review';
+import { projectCatalyst, type ProjectCatalystOutput } from '@/ai/flows/project-catalyst';
 import { Resend } from 'resend';
 
-// Safely initialize Resend to avoid crashing if the API key is missing
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-// AI Portfolio Review Action
-const ReviewStateSchema = z.object({
-  feedback: z.string().nullable(),
-  suggestions: z.string().nullable(),
+// AI Project Catalyst Action
+const CatalystStateSchema = z.object({
+  data: z.any().nullable(),
   message: z.string().nullable(),
+  success: z.boolean(),
 });
 
-type ReviewState = z.infer<typeof ReviewStateSchema>;
+type CatalystState = z.infer<typeof CatalystStateSchema>;
 
-const ReviewFormSchema = z.object({
-  portfolioDescription: z.string().min(50, {
-    message: 'Please provide a description of at least 50 characters.',
+const CatalystFormSchema = z.object({
+  projectIdea: z.string().min(20, {
+    message: 'Please provide a more detailed idea (min 20 characters).',
   }),
 });
 
-export async function getPortfolioReview(
-  prevState: ReviewState,
+export async function getProjectArchitecture(
+  prevState: CatalystState,
   formData: FormData
-): Promise<ReviewState> {
-  const validatedFields = ReviewFormSchema.safeParse({
-    portfolioDescription: formData.get('portfolioDescription'),
+): Promise<CatalystState> {
+  const validatedFields = CatalystFormSchema.safeParse({
+    projectIdea: formData.get('projectIdea'),
   });
 
   if (!validatedFields.success) {
     return {
-      feedback: null,
-      suggestions: null,
-      message: validatedFields.error.flatten().fieldErrors.portfolioDescription?.[0] || "Validation failed.",
+      data: null,
+      message: validatedFields.error.flatten().fieldErrors.projectIdea?.[0] || "Validation failed.",
+      success: false,
     };
   }
 
   try {
-    const result = await portfolioReview({
-      portfolioDescription: validatedFields.data.portfolioDescription,
+    const result = await projectCatalyst({
+      projectIdea: validatedFields.data.projectIdea,
     });
     
-    if (!result || !result.feedback) {
-        throw new Error('The AI service returned an empty response.');
-    }
-
     return {
-      feedback: result.feedback,
-      suggestions: result.suggestions,
+      data: result,
       message: null,
+      success: true,
     };
   } catch (error: any) {
-    console.error('AI Review Action Error:', error);
-    
-    let userMessage = 'The AI is taking a moment to think. Please try again in a few seconds.';
-    
-    // Extract a more useful error string
-    const errorString = error.message || String(error);
-    
-    if (errorString.includes('API_KEY_INVALID') || errorString.includes('401') || errorString.includes('API key')) {
-      userMessage = 'AI service is currently unavailable. Please ensure your GOOGLE_GENAI_API_KEY is correctly set in your environment variables.';
-    } else if (errorString.includes('404') || errorString.toLowerCase().includes('not found')) {
-      userMessage = `The AI model could not be found. This might be due to regional restrictions or a temporary service issue. Details: ${errorString.substring(0, 100)}`;
-    } else if (errorString.includes('SAFETY')) {
-      userMessage = 'The AI could not process this description due to safety filters. Please try rephrasing your description.';
-    } else {
-      userMessage = `AI Error: ${errorString.substring(0, 200)}`;
-    }
-
+    console.error('AI Architect Action Error:', error);
+    let userMessage = 'The Architect is busy. Please ensure your GOOGLE_GENAI_API_KEY is set and try again.';
     return {
-      feedback: null,
-      suggestions: null,
+      data: null,
       message: userMessage,
+      success: false,
     };
   }
 }
@@ -114,45 +94,26 @@ export async function submitContactForm(
         const { name, email, message } = validatedFields.data;
 
         if (!resend) {
-            console.error('RESEND_API_KEY is missing.');
             return {
-                message: 'Configuration Error: RESEND_API_KEY is missing. Emails cannot be sent until an API key is provided.',
+                message: 'Configuration Error: RESEND_API_KEY is missing.',
                 success: false,
             };
         }
 
-        // Send notification to you (the portfolio owner)
-        const ownerEmailResult = await resend.emails.send({
+        await resend.emails.send({
             from: 'Aura Folio <onboarding@resend.dev>',
             to: 'coffie09emmanuel@gmail.com',
-            subject: `New Portfolio Message from ${name}`,
-            text: `You have a new message from your portfolio contact form.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+            subject: `New Message from ${name}`,
+            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         });
-
-        if (ownerEmailResult.error) {
-            throw new Error(`Failed to send notification email: ${ownerEmailResult.error.message}`);
-        }
-
-        // Send confirmation back to the visitor
-        const visitorEmailResult = await resend.emails.send({
-            from: 'Emmanuel Mawutor Coffie <onboarding@resend.dev>',
-            to: email,
-            subject: 'Thank you for reaching out!',
-            text: `Hi ${name},\n\nThank you for contacting me through my portfolio! I've received your message and will get back to you shortly.\n\nBest regards,\nEmmanuel Mawutor Coffie`,
-        });
-
-        if (visitorEmailResult.error) {
-            console.warn(`Visitor confirmation email could not be sent: ${visitorEmailResult.error.message}`);
-        }
 
         return {
-            message: 'Message sent successfully! I will get back to you soon.',
+            message: 'Message sent successfully!',
             success: true,
         };
     } catch (error: any) {
-        console.error('Contact Form Submission Error:', error);
         return {
-            message: `Error: ${error.message || 'An unexpected error occurred while sending your message.'}`,
+            message: `Error: ${error.message || 'Failed to send message.'}`,
             success: false,
         };
     }

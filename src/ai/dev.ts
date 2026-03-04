@@ -1,4 +1,4 @@
 import { config } from 'dotenv';
 config();
 
-import '@/ai/flows/portfolio-review.ts';
+import '@/ai/flows/project-catalyst.ts';
