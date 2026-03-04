@@ -5,7 +5,6 @@ import { About } from '@/components/about';
 import { Skills } from '@/components/skills';
 import { Projects } from '@/components/projects';
 import { Timeline } from '@/components/timeline';
-import { AiCatalyst } from '@/components/ai-catalyst';
 import { Contact } from '@/components/contact';
 import { Footer } from '@/components/footer';
 
@@ -19,7 +18,6 @@ export default function Home() {
         <Skills />
         <Timeline />
         <Projects />
-        <AiCatalyst />
         <Contact />
       </main>
       <Footer />

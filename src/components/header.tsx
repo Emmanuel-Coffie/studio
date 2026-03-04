@@ -19,7 +19,6 @@ const navItems = [
   { href: '#skills', label: 'Skills' },
   { href: '#journey', label: 'Journey' },
   { href: '#projects', label: 'Projects' },
-  { href: '#ai-catalyst', label: 'AI Architect' },
   { href: '#contact', label: 'Contact' },
 ];
 
