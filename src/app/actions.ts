@@ -1,4 +1,3 @@
-
 'use server';
 
 import { z } from 'zod';
@@ -45,7 +44,7 @@ export async function getPortfolioReview(
     });
     
     if (!result || !result.feedback) {
-        throw new Error('Invalid AI response');
+        throw new Error('The AI service returned an empty response.');
     }
 
     return {
@@ -54,19 +53,25 @@ export async function getPortfolioReview(
       message: null,
     };
   } catch (error: any) {
-    // Log the error for debugging purposes in the server console
     console.error('AI Review Error Detail:', error);
     
+    let userMessage = 'The AI is taking a moment to think. Please try again in a few seconds.';
+    
+    if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('401')) {
+      userMessage = 'AI service is currently unavailable (Invalid or missing API Key).';
+    } else if (error.message?.includes('SAFETY')) {
+      userMessage = 'The AI could not process this description due to safety filters. Please try rephrasing your description.';
+    } else if (error.message) {
+      userMessage = `AI Error: ${error.message}`;
+    }
+
     return {
       feedback: null,
       suggestions: null,
-      message: error.message?.includes('API_KEY_INVALID') 
-        ? 'AI service is currently unavailable (Invalid API Key).' 
-        : 'The AI is taking a moment to think. Please try again in a few seconds.',
+      message: userMessage,
     };
   }
 }
-
 
 // Contact Form Action
 const ContactStateSchema = z.object({
@@ -111,7 +116,6 @@ export async function submitContactForm(
             };
         }
 
-        // 1. Send notification email to the owner
         await resend.emails.send({
             from: 'Portfolio Contact <onboarding@resend.dev>',
             to: 'coffie09emmanuel@gmail.com',
@@ -119,7 +123,6 @@ export async function submitContactForm(
             text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         });
 
-        // 2. Send confirmation email to the sender
         await resend.emails.send({
             from: 'Emmanuel Mawutor Coffie <onboarding@resend.dev>',
             to: email,

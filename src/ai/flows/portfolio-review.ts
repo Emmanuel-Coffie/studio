@@ -1,4 +1,3 @@
-// This file is machine-generated - edit with caution!
 'use server';
 /**
  * @fileOverview A portfolio review AI agent.
@@ -34,6 +33,7 @@ export async function portfolioReview(input: PortfolioReviewInput): Promise<Port
 
 const prompt = ai.definePrompt({
   name: 'portfolioReviewPrompt',
+  model: 'googleai/gemini-1.5-flash',
   input: {schema: PortfolioReviewInputSchema},
   output: {schema: PortfolioReviewOutputSchema},
   prompt: `You are an elite Creative Director and UX Strategist at a top-tier design agency. 
@@ -56,6 +56,9 @@ const portfolioReviewFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return output!;
+    if (!output) {
+      throw new Error('The AI failed to generate a response. This can happen if the input is too brief or violates safety guidelines.');
+    }
+    return output;
   }
 );
