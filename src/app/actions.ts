@@ -57,13 +57,17 @@ export async function getPortfolioReview(
     
     let userMessage = 'The AI is taking a moment to think. Please try again in a few seconds.';
     
-    // Specifically catch missing API key errors
-    if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('401') || error.message?.includes('API key')) {
-      userMessage = 'AI service is currently unavailable. Please ensure the GOOGLE_GENAI_API_KEY is correctly set in the environment.';
-    } else if (error.message?.includes('SAFETY')) {
+    // Improved error identification
+    const errorString = error.message || String(error);
+    
+    if (errorString.includes('API_KEY_INVALID') || errorString.includes('401') || errorString.includes('API key')) {
+      userMessage = 'AI service is currently unavailable. Please ensure your GOOGLE_GENAI_API_KEY is correctly set in your environment variables.';
+    } else if (errorString.includes('404') || errorString.includes('not found')) {
+      userMessage = 'The requested AI model could not be found. This might be a temporary service issue or a configuration mismatch.';
+    } else if (errorString.includes('SAFETY')) {
       userMessage = 'The AI could not process this description due to safety filters. Please try rephrasing your description.';
-    } else if (error.message) {
-      userMessage = `AI Error: ${error.message}`;
+    } else if (errorString) {
+      userMessage = `AI Error: ${errorString}`;
     }
 
     return {
@@ -110,9 +114,9 @@ export async function submitContactForm(
         const { name, email, message } = validatedFields.data;
 
         if (!resend) {
-            console.error('RESEND_API_KEY is missing. Check your environment variables.');
+            console.error('RESEND_API_KEY is missing.');
             return {
-                message: 'Configuration Error: RESEND_API_KEY is missing. Please add it to your environment variables to enable email sending.',
+                message: 'Configuration Error: RESEND_API_KEY is missing. Emails cannot be sent until an API key is provided.',
                 success: false,
             };
         }
@@ -130,8 +134,6 @@ export async function submitContactForm(
         }
 
         // Send confirmation back to the visitor
-        // Note: Using onboarding@resend.dev limits you to sending to your own email address 
-        // until you verify a custom domain in Resend.
         const visitorEmailResult = await resend.emails.send({
             from: 'Emmanuel Mawutor Coffie <onboarding@resend.dev>',
             to: email,
@@ -140,7 +142,7 @@ export async function submitContactForm(
         });
 
         if (visitorEmailResult.error) {
-            console.warn(`Visitor confirmation email could not be sent: ${visitorEmailResult.error.message}. This is common when using the Resend sandbox with non-verified emails.`);
+            console.warn(`Visitor confirmation email could not be sent: ${visitorEmailResult.error.message}`);
         }
 
         return {

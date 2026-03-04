@@ -33,7 +33,7 @@ export async function portfolioReview(input: PortfolioReviewInput): Promise<Port
 
 const prompt = ai.definePrompt({
   name: 'portfolioReviewPrompt',
-  model: 'googleai/gemini-1.5-flash',
+  model: 'googleai/gemini-1.5-flash-latest',
   input: {schema: PortfolioReviewInputSchema},
   output: {schema: PortfolioReviewOutputSchema},
   prompt: `You are an elite Creative Director and UX Strategist at a top-tier design agency. 
