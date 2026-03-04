@@ -4,7 +4,7 @@ A modern, responsive personal portfolio built with Next.js, Tailwind CSS, and AI
 
 ## Features
 
-- **Responsive Design**: Optimized for all screen sizes.
+- **Responsive Design**: Optimized for all screen sizes (Mobile, Tablet, Desktop).
 - **AI Portfolio Review**: Get instant feedback on your portfolio presentation using Google Gemini.
 - **Contact Form**: Integrated with Resend for automated email notifications and confirmations.
 - **Dark Mode**: Supports light and dark themes using `next-themes`.
@@ -37,33 +37,16 @@ To get this project running on your own computer:
     ```
     Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Production Build
-
-To create an optimized production version of your app:
-
-1.  **Build the project**:
-    ```bash
-    npm run build
-    ```
-2.  **Start the production server**:
-    ```bash
-    npm start
-    ```
+## Important Note on Emails (Resend)
+By default, Resend's free tier (`onboarding@resend.dev`) only allows you to send emails **to your own account email**. To send emails to other people (like the visitor confirmation email), you will need to:
+1.  Add and verify your own domain in the [Resend Dashboard](https://resend.com/domains).
+2.  Update the `from` address in `src/app/actions.ts` to use your verified domain.
 
 ## How to Push to GitHub
 
-1.  **Initialize Git**:
-    ```bash
-    git init
-    ```
-2.  **Add all files**:
-    ```bash
-    git add .
-    ```
-3.  **Commit your changes**:
-    ```bash
-    git commit -m "Initial commit: Aura Folio setup"
-    ```
+1.  **Initialize Git**: `git init`
+2.  **Add all files**: `git add .`
+3.  **Commit your changes**: `git commit -m "Initial commit: Aura Folio setup"`
 4.  **Create a new repository on GitHub** (without a README or .gitignore).
 5.  **Link and push**:
     ```bash

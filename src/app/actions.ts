@@ -110,35 +110,47 @@ export async function submitContactForm(
         const { name, email, message } = validatedFields.data;
 
         if (!resend) {
-            console.warn('RESEND_API_KEY is missing. Emails will not be sent.');
+            console.error('RESEND_API_KEY is missing. Check your environment variables.');
             return {
-                message: 'Form submitted successfully, but email sending is currently disabled (missing API key).',
-                success: true,
+                message: 'Configuration Error: RESEND_API_KEY is missing. Please add it to your environment variables to enable email sending.',
+                success: false,
             };
         }
 
-        await resend.emails.send({
-            from: 'Portfolio Contact <onboarding@resend.dev>',
+        // Send notification to you (the portfolio owner)
+        const ownerEmailResult = await resend.emails.send({
+            from: 'Aura Folio <onboarding@resend.dev>',
             to: 'coffie09emmanuel@gmail.com',
-            subject: `Aura Folio: New message from ${name}`,
-            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+            subject: `New Portfolio Message from ${name}`,
+            text: `You have a new message from your portfolio contact form.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         });
 
-        await resend.emails.send({
+        if (ownerEmailResult.error) {
+            throw new Error(`Failed to send notification email: ${ownerEmailResult.error.message}`);
+        }
+
+        // Send confirmation back to the visitor
+        // Note: Using onboarding@resend.dev limits you to sending to your own email address 
+        // until you verify a custom domain in Resend.
+        const visitorEmailResult = await resend.emails.send({
             from: 'Emmanuel Mawutor Coffie <onboarding@resend.dev>',
             to: email,
-            subject: 'Thank you for your message!',
-            text: `Hi ${name},\n\nThank you for reaching out! I have received your message and will get back to you as soon as possible.\n\nBest regards,\nEmmanuel Mawutor Coffie`,
+            subject: 'Thank you for reaching out!',
+            text: `Hi ${name},\n\nThank you for contacting me through my portfolio! I've received your message and will get back to you shortly.\n\nBest regards,\nEmmanuel Mawutor Coffie`,
         });
 
+        if (visitorEmailResult.error) {
+            console.warn(`Visitor confirmation email could not be sent: ${visitorEmailResult.error.message}. This is common when using the Resend sandbox with non-verified emails.`);
+        }
+
         return {
-            message: 'Thank you for your message! I have received it and sent you a confirmation email.',
+            message: 'Message sent successfully! I will get back to you soon.',
             success: true,
         };
-    } catch (error) {
-        console.error('Contact Form Error:', error);
+    } catch (error: any) {
+        console.error('Contact Form Submission Error:', error);
         return {
-            message: 'An unexpected error occurred while sending your message. Please try again later.',
+            message: `Error: ${error.message || 'An unexpected error occurred while sending your message.'}`,
             success: false,
         };
     }
