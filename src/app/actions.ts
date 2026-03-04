@@ -47,6 +47,7 @@ export async function submitContactForm(
             };
         }
 
+        // 1. Send notification to YOU
         await resend.emails.send({
             from: 'Aura Folio <onboarding@resend.dev>',
             to: 'coffie09emmanuel@gmail.com',
@@ -54,8 +55,16 @@ export async function submitContactForm(
             text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         });
 
+        // 2. Send automated response to THEM
+        await resend.emails.send({
+            from: 'Emmanuel Coffie <onboarding@resend.dev>',
+            to: email,
+            subject: 'Thank you for reaching out!',
+            text: `Hi ${name},\n\nThank you for contacting me through my portfolio. I've received your message and will get back to you as soon as possible.\n\nBest regards,\nEmmanuel Mawutor Coffie`,
+        });
+
         return {
-            message: 'Message sent successfully!',
+            message: 'Message sent successfully! Check your inbox for confirmation.',
             success: true,
         };
     } catch (error: any) {
