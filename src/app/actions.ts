@@ -43,17 +43,26 @@ export async function getPortfolioReview(
     const result = await portfolioReview({
       portfolioDescription: validatedFields.data.portfolioDescription,
     });
+    
+    if (!result || !result.feedback) {
+        throw new Error('Invalid AI response');
+    }
+
     return {
       feedback: result.feedback,
       suggestions: result.suggestions,
       message: null,
     };
-  } catch (error) {
-    console.error('AI Review Error:', error);
+  } catch (error: any) {
+    // Log the error for debugging purposes in the server console
+    console.error('AI Review Error Detail:', error);
+    
     return {
       feedback: null,
       suggestions: null,
-      message: 'An unexpected error occurred. Please try again later.',
+      message: error.message?.includes('API_KEY_INVALID') 
+        ? 'AI service is currently unavailable (Invalid API Key).' 
+        : 'The AI is taking a moment to think. Please try again in a few seconds.',
     };
   }
 }
