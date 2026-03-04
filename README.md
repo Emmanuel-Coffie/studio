@@ -5,7 +5,7 @@ A modern, responsive personal portfolio built with Next.js, Tailwind CSS, and AI
 ## Features
 
 - **Responsive Design**: Optimized for all screen sizes.
-- **AI Portfolio Review**: Get instant feedback on your portfolio presentation.
+- **AI Portfolio Review**: Get instant feedback on your portfolio presentation using Google Gemini.
 - **Contact Form**: Integrated with Resend for automated email notifications and confirmations.
 - **Dark Mode**: Supports light and dark themes using `next-themes`.
 
@@ -23,8 +23,12 @@ To get this project running on your own computer:
     - Create a folder named `public` at the root of the project.
     - Place your image file `Gemini_Generated_Image_tvqr2xtvqr2xtvqr.png` inside the `public` folder.
 5.  **Set up environment variables**:
-    Create a `.env` file in the root directory and add your Resend API key:
+    Create a `.env` file in the root directory and add your keys:
     ```env
+    # For AI features (Get from https://aistudio.google.com/)
+    GOOGLE_GENAI_API_KEY=your_google_ai_api_key_here
+
+    # For Contact Form (Get from https://resend.com/)
     RESEND_API_KEY=your_resend_api_key_here
     ```
 6.  **Run the development server**:
@@ -52,19 +56,15 @@ To create an optimized production version of your app:
     ```bash
     git init
     ```
-
 2.  **Add all files**:
     ```bash
     git add .
     ```
-
 3.  **Commit your changes**:
     ```bash
     git commit -m "Initial commit: Aura Folio setup"
     ```
-
 4.  **Create a new repository on GitHub** (without a README or .gitignore).
-
 5.  **Link and push**:
     ```bash
     git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git

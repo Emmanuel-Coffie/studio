@@ -57,8 +57,9 @@ export async function getPortfolioReview(
     
     let userMessage = 'The AI is taking a moment to think. Please try again in a few seconds.';
     
-    if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('401')) {
-      userMessage = 'AI service is currently unavailable (Invalid or missing API Key).';
+    // Specifically catch missing API key errors
+    if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('401') || error.message?.includes('API key')) {
+      userMessage = 'AI service is currently unavailable. Please ensure the GOOGLE_GENAI_API_KEY is correctly set in the environment.';
     } else if (error.message?.includes('SAFETY')) {
       userMessage = 'The AI could not process this description due to safety filters. Please try rephrasing your description.';
     } else if (error.message) {
